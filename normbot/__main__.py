@@ -65,32 +65,30 @@ from normbot.modules.moretools import moretooltext
 from normbot.functions.stats import bot_sys_stats
 
 PM_START_TEXT = """
-හායි, මම [normbot](https://t.me/sznormbot). මම Group Manament Bot කෙනෙක්. මාව පාවිච්චි කරන විදිහ දැන විධාන 📌 උඩ click කරන්න. වැඩි විස්තර දැන ගන්න විස්තර 📃 උඩ click කරන්න.
+Hello👋 there \n I am  [Lusi bot](https://t.me/TheLusibot).I am a simple group management bot with cool features. \n Click help for view my features and click About for Know more about me.
 """
 
 buttons = [
     [
-        InlineKeyboardButton(text="විස්තර 📃", callback_data="aboutmenu_"),
-        InlineKeyboardButton(text="විධාන 📌", callback_data="help_back" ),
-    ],
+        InlineKeyboardButton(text="🆘Help and Commands🆘", callback_data="help_back")],
+    [   InlineKeyboardButton(text="About📌", callback_data="aboutmenu_" )],
     [
-        InlineKeyboardButton(text="Updates", url="https://t.me/szbots"),
-        InlineKeyboardButton(text="Owner Group", url="https://t.me/digitalgaweshakayochat"),
+        InlineKeyboardButton(text="Updates", url="https://t.me/TeamCyberUs"),
+        InlineKeyboardButton(text="Support", url="https://t.me/TmCyberUs"),
     ],
     [
         InlineKeyboardButton(
-            text="මාව Group එකට add කරන්න ➕️", url="https://t.me/sznormbot?startgroup=true"),
+            text="➕️Add Lusi to your Group➕️", url="https://t.me/Thelusibot?startgroup=true"),
     ]
 ]
 
 
 HELP_STRINGS = f"""
-*ප්‍රධාන Commands* 
-• /start- මාව start කරන්න
-• /help - Commands ටික දැන ගන්න.
-• /settings - සැකසුම් සදහා.
-
-පිටු 3 ක විධාන සදහන් වේ. ⬅️ ➡️ භාවිතා කරමින් හුවමාරු වෙන්න.
+*Main Commands* 
+• /start- Start Me
+• /help - View Commands
+• /settings - Get settings.
+.
 """.format(
     dispatcher.bot.first_name,
     "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n",
@@ -194,7 +192,7 @@ def start(update: Update, context: CallbackContext):
                     update.effective_chat.id,
                     HELPABLE[mod].__help__,
                     InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="🔙 ආපසු", callback_data="help_back")]]
+                        [[InlineKeyboardButton(text="🔙Back", callback_data="help_back")]]
                     ),
                 )
 
@@ -219,12 +217,12 @@ def start(update: Update, context: CallbackContext):
             )
     else:
         update.effective_message.reply_text(
-            " මම ඉන්නවෝ 🙋‍♂️\n<code>{}</code> ක කාලයක ඉදන්.".format(
+            " I am Alive 🙋‍♂️\n Since <code>{}</code>.".format(
                 uptime
             ),
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="PM", url="http://t.me/sznormbot"),
+                [[InlineKeyboardButton(text="PM", url="http://t.me/Thelusibot"),
                  InlineKeyboardButton(text="Stats", callback_data="stats_callback")]]
             ),
         )
@@ -298,7 +296,7 @@ def help_button(update, context):
         if mod_match:
             module = mod_match.group(1)
             text = (
-                "{} භාවිතා කරන ආකාරය.".format(
+                "**✦Help For {} Modules✦**".format(
                     HELPABLE[module].__mod_name__
                 )
                 + HELPABLE[module].__help__
@@ -307,7 +305,7 @@ def help_button(update, context):
                 text=text,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="🔙 ආපසු", callback_data="help_back")]]
+                    [[InlineKeyboardButton(text="🔙Back", callback_data="help_back")]]
                 ),
             )
 
@@ -360,23 +358,23 @@ def normbot_about_callback(update, context):
     query = update.callback_query
     if query.data == "aboutmenu_":
         query.message.edit_text(
-            text=f"හායි, මම [Normbot](https://t.me/sznormbot)"
-            f"\n\n Group Manage කිරීමට මාව භාවිතා කළ හැක."
-            f"\n Version එක - v3.0"
-            f"\n විස්තර - @szbots",
+            text=f"Hello I am [Lusi bot](https://t.me/Thelusibot)"
+            f"\n\n You can use me to manage your groups"
+            f"\n Version - v1.0"
+            f"\n Updates - @TeamCyberUs",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=False,
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="උදවු 📔", callback_data="aboutmenu_howto"
+                            text="Help📔", callback_data="aboutmenu_howto"
                         ),
                         InlineKeyboardButton(
-                            text="ස්තූතිය 🙏", callback_data="aboutmenu_credit"
+                            text="Credit💳", callback_data="aboutmenu_credit"
                         ),
                     ],
-                    [InlineKeyboardButton(text="🔙 ආපසු", callback_data="aboutmenu_back")],
+                    [InlineKeyboardButton(text="🔙Back", callback_data="aboutmenu_back")],
                 ]
             ),
         )
@@ -390,12 +388,12 @@ def normbot_about_callback(update, context):
 
     elif query.data == "aboutmenu_howto":
         query.message.edit_text(
-            text=f"භාවිතා කරන ආකාරය"
-            f"\n\nමාව ඔයාගේ group එකට add කරලා admin දෙන්න. එතකොට හරි 😁 ගැටළුවක් තිබ්බොත් අපේ [SZ Bot](https://t.me/szbots) channel එකට හරි [ඩිජිටල් ගවේෂකයෝ](https://t.me/digitalgaweshakayochat) group එකට හරි join වෙලා ඔයාගේ ගැටළුව කියන්න.",
+            text=f"How to use me"
+            f"\n\nAdd Lusi bot to your group & Give admin with fully permissions.\n Then you have some problems contract us in [CʏʙᴇʀUꜱᵗᵐ](https://t.me/TeamCyberUs).",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="🔙 ආපසු", callback_data="aboutmenu_")]]
+                [[InlineKeyboardButton(text="🔙Back", callback_data="aboutmenu_")]]
             ),
         )
         
@@ -405,21 +403,23 @@ def normbot_about_callback(update, context):
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="🔙 ආපසු", callback_data="help_back")]]
+                [[InlineKeyboardButton(text="🔙Back", callback_data="help_back")]]
             ),
         ) 
     
     elif query.data == "aboutmenu_credit":
         query.message.edit_text(
-            text=f"අපේ මේ normbot Bot හැදෙන්නේ [Paul Larsen](https://github.com/PaulSonOfLars/tgbot) විසින් හදපු [tgbot](https://github.com/PaulSonOfLars/tgbot) Source code එකෙන්, කොහොම වුනත් ඒ source code එක Saitma robot හා Daisy Bot විසින් නැවත වතාවක් Modify කරනවා. අන්න ඒ Modify කරපු [Daisy Bot](https://t.me/DaisyXbot)ගෙන් තමා මේ Botව හදලා තියෙන්නෙත්, ඉතින් ඒ [Daisy Bot](https://t.me/DaisyXbot) ව ටිකක් Modify කරලා සිංහලට හරවපු එක තමා මම කරේ. ඊට අමතරව මේ normbot Bot ව හදන්න තව ගොඩක් දෙනෙක් ගේ සහාය ලැබුණා."
+            text=f" ❤️Special Credit❤️."
+            f"\n  • [Paul Larsen](https://github.com/PaulSonOfLars/tgbot)
             f"\n  • [TeamDaisyX](https://github.com/TeamDaisyX)"
             f"\n  • [SL Bot Zone](https://t.me/slbotzone)"
-            f"\n  • Max Robot"
-            f"\nඒ අතරින් ප්‍රධානම අය තමා ඔය උඩින් සදහන් කරේ මීට අමතරව ගොඩක් දෙනෙක් මේ වැඩේට සහාය වුණා. ඒ හැමෝටම ස්තූතියි. 🙏 ",
+            f"\n  • Tinura Deneth - Norm bot"
+            f"\n  • Supun Maduranga
+            f"\n Special Thanks for Helping to create Lusi bot🙏 ",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="🔙 ආපසු", callback_data="aboutmenu_")]]
+                [[InlineKeyboardButton(text="🔙Back", callback_data="aboutmenu_")]]
             ),
         )
 @run_async

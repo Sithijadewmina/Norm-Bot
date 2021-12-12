@@ -410,11 +410,11 @@ def normbot_about_callback(update, context):
     elif query.data == "aboutmenu_credit":
         query.message.edit_text(
             text=f" ❤️Special Credit❤️."
-            f"\n  • [Paul Larsen](https://github.com/PaulSonOfLars/tgbot)
+            f"\n  • [Paul Larsen](https://github.com/PaulSonOfLars/tgbot)"
             f"\n  • [TeamDaisyX](https://github.com/TeamDaisyX)"
             f"\n  • [SL Bot Zone](https://t.me/slbotzone)"
             f"\n  • Tinura Deneth - Norm bot"
-            f"\n  • Supun Maduranga
+            f"\n  • Supun Maduranga"
             f"\n Special Thanks for Helping to create Lusi bot🙏 ",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,

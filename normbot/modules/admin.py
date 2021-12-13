@@ -356,7 +356,7 @@ def adminlist(update, context):
     bot = context.bot
 
     if update.effective_message.chat.type == "private":
-        send_message(update.effective_message, "මෙම විධානය ක්රියාත්මක වන්නේ group වල පමණි.")
+        send_message(update.effective_message, "This command wark only in groups.")
         return
 
     update.effective_chat
@@ -383,7 +383,7 @@ def adminlist(update, context):
         custom_title = admin.custom_title
 
         if user.first_name == "":
-            name = "☠ මකා දැමූ ගිණුම"
+            name = "☠Deleted account"
         else:
             name = "{}".format(
                 mention_html(
@@ -464,15 +464,15 @@ def adminlist(update, context):
 __help__ = """
  • /admins - list of admins in the chat
 
-*Adminලට විතරයි:*
- • /pin - නිකන්ම reply කරපු message එක  pin කරන්න .`'loud'` හෝ `'notify'` දැම්මොත් අගට pin කරා කියලා notfication එකක් group එකේ දානවා.
- • /unpin - unpins කරන්න message.
- • /invitelink - Invite link එක ගන්න.
- • /promote - Reply කරන කෙනාව admin කරන්න.
- • /demote - Reply කරන කෙනාගේ admin අයින් කරන්න.
- • /title <title here> - Bot ගෙන් promote කරපු කෙනාගෙ admin title එකක් දෙන්න/වෙනස් කරන්න.
- • /admincache - Admins list එක refresh කරන්න.
- • /zombies - scan and clean zombies
+* Admin only: *
+✦ / pin - Simply pin the replied message. 
+✦ / unpin - unpins message. 
+✦ / invitelink - Get the Invite link. Promote 
+✦ / promote - Admin the person who replies. 
+✦ / demote - Remove the reply admin. 
+✦ / title  - Give / change the admin title of the person promoted by Bot. 
+✦ / Admincache - Refresh the Admins list.
+✦ / zombies - scan and clean zombies.
 """
 
 ADMINLIST_HANDLER = DisableAbleCommandHandler("admins", adminlist)

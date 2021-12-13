@@ -40,7 +40,7 @@ def promote(update: Update, context: CallbackContext) -> str:
         not (promoter.can_promote_members or promoter.status == "creator")
         and not user.id in DRAGONS
     ):
-        message.reply_text("එය කිරීමට ඔබට අවශ්ය අයිතිවාසිකම් නොමැත!")
+        message.reply_text("❕You haven't enough permission to do this action❕")
         return
 
     user_id = extract_user(message, args)
@@ -61,7 +61,7 @@ def promote(update: Update, context: CallbackContext) -> str:
         return
 
     if user_id == bot.id:
-        message.reply_text("මට මාවම promote කරන්න බැහැ!මා වෙනුවෙන් එය කිරීමට admin එකක් ලබා ගන්න.")
+        message.reply_text("I cannot promote me.")
         return
 
     # set same perms as bot - bot can't assign higher perms than itself!
@@ -82,9 +82,9 @@ def promote(update: Update, context: CallbackContext) -> str:
         )
     except BadRequest as err:
         if err.message == "User_not_mutual_contact":
-            message.reply_text("කණ්ඩායමේ නොමැති කෙනෙකු මට promote කළ නොහැක.")
+            message.reply_text("I can not promote anyone who is not on the team")
         else:
-            message.reply_text("promote කිරීමේදී දෝෂයක් ඇතිවිය.")
+            message.reply_text("There is an error when promoting.")
         return
 
     bot.sendMessage(
